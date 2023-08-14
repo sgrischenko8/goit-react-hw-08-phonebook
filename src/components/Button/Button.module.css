@@ -1,0 +1,23 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  font-weight: 700;
+  cursor: pointer;
+  color: inherit;
+  background-color: inherit;
+  border-color: #07d497;
+  border-radius: 4px;
+  box-shadow: 1px 1px 1px 0px #07d497;
+  text-shadow: 0px 0px 0px #07d497;
+}
+
+li .btn {
+  border-color: #aa2424;
+  box-shadow: 1px 1px 4px 0px #aa2424;
+  text-shadow: 0px 0px 0px #aa2424;
+}
+
+button:hover {
+  opacity: 0.8;
+}

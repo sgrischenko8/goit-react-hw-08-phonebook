@@ -1,0 +1,124 @@
+import { Formik, Form, Field } from 'formik';
+import { Button } from 'components/Button/Button';
+import Loader from 'components/Loader/Loader';
+import toast from 'react-hot-toast';
+import styles from './ContactForm.module.css';
+import {
+  useGetContactsQuery,
+  useAddContactMutation,
+  useEditContactMutation,
+} from 'redux/contacts/contactsSlice';
+import PropTypes from 'prop-types';
+
+export const ContactForm = ({ onClose, contact }) => {
+  const initialValues = { name: '', number: '' };
+  contact?.name
+    ? (initialValues.name = contact?.name)
+    : (initialValues.name = '');
+  contact?.number
+    ? (initialValues.number = contact?.number)
+    : (initialValues.number = '');
+
+  const { data: contacts } = useGetContactsQuery();
+  const [addContact, { isLoading }] = useAddContactMutation();
+  const [editContact, { isLoading: editLoading }] = useEditContactMutation();
+
+  const checkForEmptiness = values => {
+    if (values.name.trim() === '' || values.number.trim() === '') {
+      return true;
+    }
+  };
+
+  const addContactHandler = async (values, actions) => {
+    if (checkForEmptiness(values)) {
+      toast.error('Fill all fields');
+      return;
+    }
+    if (
+      contacts.some(
+        item => item?.name.toLowerCase() === values.name.toLowerCase()
+      )
+    ) {
+      toast.error(`${values.name} is already in contacts.`);
+      return;
+    }
+
+    try {
+      await addContact(values);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      actions.resetForm();
+    }
+  };
+
+  const editContactHandler = async (values, actions) => {
+    if (contact.name === values.name && contact.number === values.number) {
+      actions.resetForm();
+      onClose();
+      return;
+    }
+    if (checkForEmptiness(values)) {
+      toast.error('Fill all fields');
+      return;
+    }
+
+    try {
+      await editContact(contact.id, values);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      actions.resetForm();
+      onClose();
+    }
+  };
+
+  function dummyClick() {
+    return;
+  }
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      onSubmit={initialValues.name ? editContactHandler : addContactHandler}
+    >
+      <Form className={styles.form}>
+        <label htmlFor="name" className={styles.label}>
+          Name
+        </label>
+        <Field
+          className={styles.input}
+          type="text"
+          name="name"
+          pattern="['a-zA-Z\u0400-\u04ff0-9\s\W+\.]+"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+        />
+
+        <label htmlFor="number" className={styles.label}>
+          Number
+        </label>
+        <Field
+          className={styles.input}
+          type="tel"
+          name="number"
+          pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
+          maxLength="19"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +. For example +38(050)-32-74-456"
+        />
+        <Button onClick={dummyClick}>
+          {initialValues.name ? 'Rewrite' : 'Add contact'}
+        </Button>
+        {(isLoading || editLoading) && <Loader />}
+      </Form>
+    </Formik>
+  );
+};
+
+ContactForm.propTypes = {
+  onClose: PropTypes.func,
+  contact: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+  }),
+};

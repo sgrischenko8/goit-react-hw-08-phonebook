@@ -1,0 +1,74 @@
+import { Formik, Form, Field } from 'formik';
+import { Button } from 'components/Button/Button';
+import styles from './CredentialForm.module.css';
+import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+const initialValues = { name: '', email: '', password: '' };
+
+export const CredentialForm = ({ loginHandler, registerHandler }) => {
+  const location = useLocation();
+
+  function dummyClick() {
+    return;
+  }
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      onSubmit={
+        location.pathname === '/register' ? registerHandler : loginHandler
+      }
+    >
+      <Form className={styles.form}>
+        {location.pathname === '/register' && (
+          <>
+            <label htmlFor="name" className={styles.label}>
+              Name
+            </label>
+            <Field
+              className={styles.input}
+              type="text"
+              name="name"
+              pattern="['a-zA-Z\u0400-\u04ff0-9\s\W+\.]+"
+              minLength="2"
+              title="Name may contain only letters, apostrophe, dash, dots and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            />
+          </>
+        )}
+
+        <label htmlFor="email" className={styles.label}>
+          Email
+        </label>
+        <Field
+          className={styles.input}
+          type="email"
+          name="email"
+          pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"
+          title="E-mail may contain only letters, digits, At sign and dot. For example JacobMercer2@gmail.com"
+        />
+
+        <label htmlFor="password" className={styles.label}>
+          Password
+        </label>
+        <Field
+          className={styles.input}
+          type="password"
+          name="password"
+          pattern="['a-zA-Z\d\s\W+\.]+."
+          minLength="6"
+          title="Password number may contain letters, digits, spaces and symbols"
+        />
+
+        <Button onClick={dummyClick}>
+          {location.pathname === '/register' ? 'Sign Up' : 'Log In'}
+        </Button>
+      </Form>
+    </Formik>
+  );
+};
+
+CredentialForm.propTypes = {
+  loginHandler: PropTypes.func,
+  registerHandler: PropTypes.func,
+};
