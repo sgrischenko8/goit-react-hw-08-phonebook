@@ -1,5 +1,6 @@
 import { Button } from 'components/Button/Button';
 import Loader from 'components/Loader/Loader';
+import { ReactComponent as Out } from 'icons/Out.svg';
 import { useDispatch } from 'react-redux';
 import { useCheckUserQuery, useLogoutMutation } from 'redux/auth/authSlice';
 import { setToken } from 'redux/auth/tokenSlice';
@@ -29,7 +30,9 @@ export const UserMenu = () => {
           {isLoading ? (
             <Loader />
           ) : (
-            <Button onClick={logoutHandler}>Log Out</Button>
+            <Button onClick={logoutHandler}>
+              <Out />
+            </Button>
           )}
         </div>
       )}

@@ -18,11 +18,19 @@ const Layout = () => {
   return (
     <>
       <header className={styles.header}>
-        <Navigation />
-        {token && <UserMenu />}
-        <ThemeSwitcher />
+        <div className={styles.header_container}>
+          <Navigation />
+          {token && <UserMenu />}
+          <ThemeSwitcher />
+        </div>
       </header>
       <main className={styles.main}>
+        {!token && (
+          <div className={styles.main_container}>
+            <h1>Phonebook</h1>
+          </div>
+        )}
+
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>

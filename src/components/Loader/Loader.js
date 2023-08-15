@@ -8,7 +8,7 @@ const Loader = () => {
         ariaLabel="rotating-square"
         visible={true}
         strokeWidth="10"
-        color="rgba(7, 212, 151, 0.5)"
+        color="rgba(219, 157, 43, 0.5)"
       />
     </div>
   );

@@ -3,6 +3,7 @@ import { Button } from 'components/Button/Button';
 import Loader from 'components/Loader/Loader';
 import toast from 'react-hot-toast';
 import styles from './ContactForm.module.css';
+
 import {
   useGetContactsQuery,
   useAddContactMutation,
@@ -82,32 +83,26 @@ export const ContactForm = ({ onClose, contact }) => {
       initialValues={initialValues}
       onSubmit={initialValues.name ? editContactHandler : addContactHandler}
     >
-      <Form className={styles.form}>
-        <label htmlFor="name" className={styles.label}>
-          Name
-        </label>
-        <Field
-          className={styles.input}
-          type="text"
-          name="name"
-          pattern="['a-zA-Z\u0400-\u04ff0-9\s\W+\.]+"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        />
+      <Form className={styles.form_phonebook}>
+        <div className={styles.form_add_container}>
+          <label htmlFor="name">Name</label>
+          <Field
+            type="text"
+            name="name"
+            pattern="['a-zA-Z\u0400-\u04ff0-9\s\W+\.]+"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          />
+          <label htmlFor="number">Number</label>
+          <Field
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
+            maxLength="19"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +. For example +38(050)-32-74-456"
+          />
+        </div>
+        <Button onClick={dummyClick}>✔</Button>
 
-        <label htmlFor="number" className={styles.label}>
-          Number
-        </label>
-        <Field
-          className={styles.input}
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
-          maxLength="19"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +. For example +38(050)-32-74-456"
-        />
-        <Button onClick={dummyClick}>
-          {initialValues.name ? 'Rewrite' : 'Add contact'}
-        </Button>
         {(isLoading || editLoading) && <Loader />}
       </Form>
     </Formik>

@@ -5,19 +5,17 @@
   display: flex;
   align-items: flex-end;
   top: 10px;
-  right: 10px;
-  background-color: #07d497;
-  font-size: 0.6em;
-  border: 2px solid #07d497;
-  border-radius: 16px;
+  right: 20%;
+  font-size: 14px;
+  /* color: transparent; */
 }
 
 .theme_switcher > input {
   position: relative;
-  width: 40px;
-  height: 24px;
-  border: 1px solid rgb(32, 32, 37);
-  border-radius: 30px;
+  width: 30px;
+  height: 16px;
+  border: 1px solid rgb(130, 173, 209);
+  border-radius: 20px;
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -28,30 +26,30 @@
 .theme_switcher > input::after {
   content: '';
   background: rgb(239, 240, 228);
-  display: inline-block;
   position: absolute;
   left: 0px;
-  top: 0px;
+  top: -1px;
 
-  width: 22px;
-  height: 22px;
+  width: 16px;
+  height: 16px;
 
   border-radius: 50%;
-  background-color: rgb(32, 32, 37);
+  background-color: rgba(32, 32, 37, 0.8);
   transform: translateX(0);
 }
 .theme_switcher > input:checked::after {
-  transform: translateX(calc(16px));
-  background-color: rgb(239, 240, 228);
+  transform: translateX(calc(12px));
+  background-color: rgba(239, 240, 228, 0.9);
 }
 .theme_switcher > input:checked {
   background: linear-gradient(180deg, rgb(32, 32, 37) 0%, #686868 100%);
 }
 
 .theme_switcher > span {
-  padding: 0 8px;
+  padding: 0 6px;
   font-weight: 700;
   border-radius: 16px;
+  border: 1px solid rgb(130, 173, 209);
 }
 
 .dark {

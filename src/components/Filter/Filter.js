@@ -11,8 +11,9 @@ export const Filter = () => {
     dispatch(setFilter(event.target.value));
   }
   return (
-    <label className={styles.label}>
+    <label className={styles.filter_label}>
       <input
+        className={styles.filter_input}
         type="text"
         value={filter}
         onChange={changeFilter}

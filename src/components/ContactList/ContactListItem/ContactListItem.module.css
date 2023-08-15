@@ -1,14 +1,8 @@
-.list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-}
-
 .div {
   display: flex;
+  cursor: pointer;
 }
 
-.list > li {
-  display: flex;
+.list > svg {
+  width: 12px;
 }

@@ -1,17 +1,15 @@
-.item {
-  margin: 0;
+.list_contacts {
   display: flex;
-  gap: 0.2em;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.8em;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  width: 100%;
+  max-width: 500px;
 }
 
-.list_contacts {
-  margin: 0;
-  margin-top: 1em;
-  padding: 0;
-  list-style: none;
-  min-width: 524px;
-  max-width: 555px;
+.item {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
 }

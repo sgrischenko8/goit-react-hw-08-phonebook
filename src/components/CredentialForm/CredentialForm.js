@@ -1,8 +1,8 @@
 import { Formik, Form, Field } from 'formik';
 import { Button } from 'components/Button/Button';
-import styles from './CredentialForm.module.css';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import styles from './CredentialForm.module.css';
 
 const initialValues = { name: '', email: '', password: '' };
 
@@ -20,14 +20,11 @@ export const CredentialForm = ({ loginHandler, registerHandler }) => {
         location.pathname === '/register' ? registerHandler : loginHandler
       }
     >
-      <Form className={styles.form}>
+      <Form className={styles.credential_form}>
         {location.pathname === '/register' && (
           <>
-            <label htmlFor="name" className={styles.label}>
-              Name
-            </label>
+            <label htmlFor="name">Name:</label>
             <Field
-              className={styles.input}
               type="text"
               name="name"
               pattern="['a-zA-Z\u0400-\u04ff0-9\s\W+\.]+"
@@ -37,22 +34,16 @@ export const CredentialForm = ({ loginHandler, registerHandler }) => {
           </>
         )}
 
-        <label htmlFor="email" className={styles.label}>
-          Email
-        </label>
+        <label htmlFor="email">Email:</label>
         <Field
-          className={styles.input}
           type="email"
           name="email"
           pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"
           title="E-mail may contain only letters, digits, At sign and dot. For example JacobMercer2@gmail.com"
         />
 
-        <label htmlFor="password" className={styles.label}>
-          Password
-        </label>
+        <label htmlFor="password">Password:</label>
         <Field
-          className={styles.input}
           type="password"
           name="password"
           pattern="['a-zA-Z\d\s\W+\.]+."

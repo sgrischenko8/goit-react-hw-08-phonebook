@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-
+import styles from './Navigation.module.css';
 import { useSelector } from 'react-redux';
 import { selectToken } from 'redux/selectors';
 
@@ -8,7 +8,7 @@ export const Navigation = () => {
 
   return (
     <nav>
-      <ul>
+      <ul className={styles.nav_list}>
         {token && (
           <li>
             <NavLink to="contacts">Contacts</NavLink>
@@ -25,7 +25,6 @@ export const Navigation = () => {
             <NavLink to="login">Login</NavLink>
           </li>
         )}
-        <li></li>
       </ul>
     </nav>
   );

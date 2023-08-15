@@ -1,6 +1,7 @@
 import { Button } from 'components/Button/Button';
 import Loader from 'components/Loader/Loader';
-import { Modal } from './Modal/Modal';
+import { ReactComponent as Del } from 'icons/Del.svg';
+import { Modal } from 'components/Modal/Modal';
 import PropTypes from 'prop-types';
 import { useDeleteContactMutation } from 'redux/contacts/contactsSlice';
 import styles from './ContactListItem.module.css';
@@ -16,18 +17,18 @@ export const ContactListItem = ({ contact }) => {
 
   return (
     <>
-      <div className={styles.div}>
+      <div
+        className={styles.div}
+        onClick={() => setIsModalOpen(true)}
+        title="Edit Contact"
+      >
         {contact.name}: {contact.number}
       </div>
 
-      <ul className={styles.list}>
-        <li>
-          <Button onClick={() => setIsModalOpen(true)}>Edit</Button>
-        </li>
-        <li>
-          <Button onClick={() => deleteContact(contact.id)}>Delete</Button>
-        </li>
-      </ul>
+      <Button onClick={() => deleteContact(contact.id)}>
+        <Del />
+      </Button>
+
       {isModalOpen && <Modal onClose={toggleModal} contact={contact}></Modal>}
       {isLoading && <Loader />}
     </>
