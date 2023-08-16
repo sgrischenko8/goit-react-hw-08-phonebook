@@ -12,3 +12,6 @@
 .nav_list a:hover {
   text-decoration: underline;
 }
+.nav_list a:visited {
+  color: inherit;
+}
