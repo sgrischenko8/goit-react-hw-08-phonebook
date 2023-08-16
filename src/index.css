@@ -62,7 +62,7 @@ p {
 
 .active {
   color: rgba(219, 157, 43, 1);
-  text-shadow: 0px 0px 4px #fff;
+  text-shadow: none;
 }
 
 h1 {
