@@ -50,6 +50,7 @@ export const ContactForm = ({ onClose, contact }) => {
       console.log(error);
     } finally {
       actions.resetForm();
+      onClose();
     }
   };
 
