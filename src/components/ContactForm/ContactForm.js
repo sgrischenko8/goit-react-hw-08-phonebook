@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux';
+import { selectTheme } from 'redux/selectors';
+
 import { Formik, Form, Field } from 'formik';
 import { Button } from 'components/Button/Button';
 import Loader from 'components/Loader/Loader';
@@ -19,6 +22,8 @@ export const ContactForm = ({ onClose, contact }) => {
   contact?.number
     ? (initialValues.number = contact?.number)
     : (initialValues.number = '');
+
+  const theme = useSelector(selectTheme);
 
   const { data: contacts } = useGetContactsQuery();
   const [addContact, { isLoading }] = useAddContactMutation();
@@ -84,7 +89,13 @@ export const ContactForm = ({ onClose, contact }) => {
       initialValues={initialValues}
       onSubmit={initialValues.name ? editContactHandler : addContactHandler}
     >
-      <Form className={styles.form_phonebook}>
+      <Form
+        className={
+          theme === 'light'
+            ? styles.form_phonebook_light
+            : styles.form_phonebook
+        }
+      >
         <div className={styles.form_add_container}>
           <label htmlFor="name">Name</label>
           <Field

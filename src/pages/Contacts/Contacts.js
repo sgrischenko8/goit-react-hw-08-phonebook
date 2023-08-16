@@ -18,7 +18,7 @@ const Contacts = () => {
       {contacts && (
         <div className={styles.contacts_container}>
           <div className={styles.contact_page_container}>
-            <Filter />
+            {contacts?.length > 0 && <Filter />}
             <Button onClick={() => setIsModalOpen(true)}>+</Button>
           </div>
 

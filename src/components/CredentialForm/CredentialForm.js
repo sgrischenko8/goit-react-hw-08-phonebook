@@ -50,10 +50,11 @@ export const CredentialForm = ({ loginHandler, registerHandler }) => {
           minLength="6"
           title="Password number may contain letters, digits, spaces and symbols"
         />
-
-        <Button onClick={dummyClick}>
-          {location.pathname === '/register' ? 'Sign Up' : 'Log In'}
-        </Button>
+        <div className={styles.form_btn_container}>
+          <Button onClick={dummyClick}>
+            {location.pathname === '/register' ? 'Sign Up' : 'Log In'}
+          </Button>
+        </div>
       </Form>
     </Formik>
   );

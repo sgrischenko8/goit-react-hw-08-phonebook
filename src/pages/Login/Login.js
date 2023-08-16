@@ -21,9 +21,10 @@ const Login = () => {
 
   return (
     <>
+      <h1>Phonebook</h1>
+      <CredentialForm loginHandler={loginHandler} />
       {error && <ErrorMessage error={error} />}
       {isLoading && <Loader />}
-      <CredentialForm loginHandler={loginHandler} />
     </>
   );
 };

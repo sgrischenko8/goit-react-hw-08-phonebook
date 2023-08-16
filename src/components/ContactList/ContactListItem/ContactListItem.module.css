@@ -1,8 +1,4 @@
-.div {
+.contact_info {
   display: flex;
   cursor: pointer;
-}
-
-.list > svg {
-  width: 12px;
 }

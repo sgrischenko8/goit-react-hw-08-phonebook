@@ -25,12 +25,6 @@ const Layout = () => {
         </div>
       </header>
       <main className={styles.main}>
-        {!token && (
-          <div className={styles.main_container}>
-            <h1>Phonebook</h1>
-          </div>
-        )}
-
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>

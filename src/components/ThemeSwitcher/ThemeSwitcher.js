@@ -12,7 +12,7 @@ export const ThemeSwitcher = () => {
       document.body.style.color = 'rgb(239, 240, 228)';
       return false;
     } else {
-      document.body.style.backgroundColor = 'rgb(239, 240, 228)';
+      document.body.style.backgroundColor = '#fffffb';
       document.body.style.color = 'rgb(32, 32, 37)';
       return true;
     }
@@ -35,6 +35,7 @@ export const ThemeSwitcher = () => {
         id="checkbox"
         checked={checkTheme()}
         onChange={toggleTheme}
+        title="dark/light switcher"
       />
       <span className={styles.light}>light</span>
     </div>

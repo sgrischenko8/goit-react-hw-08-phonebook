@@ -7,11 +7,8 @@
   font-size: 24px;
   font-weight: 700;
   text-decoration: none;
-  text-shadow:  -1px 0px 4px #fff, -1px 1px 4px rgba(130, 173, 209, 0.4);
 }
 .nav_list a:hover {
   text-decoration: underline;
-}
-.nav_list a:visited {
-  color: inherit;
+  opacity: 0.8;
 }

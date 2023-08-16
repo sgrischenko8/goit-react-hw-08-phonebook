@@ -7,7 +7,6 @@
   top: 10px;
   right: 20%;
   font-size: 14px;
-  /* color: transparent; */
 }
 
 .theme_switcher > input {
@@ -25,7 +24,7 @@
 }
 .theme_switcher > input::after {
   content: '';
-  background: rgb(239, 240, 228);
+  background: #fffffb;
   position: absolute;
   left: 0px;
   top: -1px;
@@ -39,7 +38,7 @@
 }
 .theme_switcher > input:checked::after {
   transform: translateX(calc(12px));
-  background-color: rgba(239, 240, 228, 0.9);
+  background-color: #fffffb;
 }
 .theme_switcher > input:checked {
   background: linear-gradient(180deg, rgb(32, 32, 37) 0%, #686868 100%);
@@ -50,6 +49,11 @@
   font-weight: 700;
   border-radius: 16px;
   border: 1px solid rgb(130, 173, 209);
+}
+@media screen and (max-width: 768px) {
+  .theme_switcher > span {
+    display: none;
+  }
 }
 
 .dark {

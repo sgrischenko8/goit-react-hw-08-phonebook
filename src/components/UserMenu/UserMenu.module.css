@@ -3,8 +3,14 @@
   align-items: center;
   width: 100%;
 }
+@media screen and (max-width: 520px) {
+  .user_container {
+    display: block;
+  }
+}
 
 .user_container > p {
+  font-style: normal;
   color: #db9d2b;
   font-size: 20px;
 }
