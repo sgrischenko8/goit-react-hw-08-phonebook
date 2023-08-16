@@ -125,7 +125,7 @@ button {
 }
 
 svg {
-  fill: rgba(219, 157, 43);
+  fill: rgba(130, 173, 209, 0.9);
   stroke: inherit;
 }
 body main ul li svg {
