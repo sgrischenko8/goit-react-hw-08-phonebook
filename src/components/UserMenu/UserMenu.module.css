@@ -11,3 +11,6 @@
 .user_container > button {
   margin-left: auto;
 }
+.user_container svg {
+  fill: rgba(219, 157, 43, 1);
+}
