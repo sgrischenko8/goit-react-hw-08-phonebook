@@ -7,8 +7,14 @@ import {
   useEditContactMutation,
 } from 'redux/contacts/contactsSlice';
 
+import { selectToken } from 'redux/selectors';
+import { useSelector } from 'react-redux';
+
 export const Button = ({ children, onClick }) => {
-  const { isLoading } = useGetContactsQuery();
+  const token = useSelector(selectToken);
+  const { isLoading } = useGetContactsQuery(undefined, {
+    skip: token ? false : true,
+  });
   const { isLoading: addLoading } = useAddContactMutation();
   const { isLoading: delLoading } = useDeleteContactMutation();
   const { isLoading: editLoading } = useEditContactMutation();

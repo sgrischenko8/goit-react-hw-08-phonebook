@@ -23,7 +23,7 @@ const Login = () => {
     <>
       <h1>Phonebook</h1>
       <CredentialForm loginHandler={loginHandler} />
-      {error && <ErrorMessage error={error} />}
+      {error && <ErrorMessage error={error} path={'/login'} />}
       {isLoading && <Loader />}
     </>
   );

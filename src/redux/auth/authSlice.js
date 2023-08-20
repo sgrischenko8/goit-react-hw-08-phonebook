@@ -6,9 +6,15 @@ export const authApi = createApi({
     baseUrl: 'https://connections-api.herokuapp.com',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().token.token;
-      if (token) {
+      if (token === '') {
+        console.log('empty');
+        headers.set('authorization', 'Bear');
+        return;
+      } else {
+        console.log('est');
         headers.set('authorization', `Bearer ${token}`);
       }
+      console.log('see');
       return headers;
     },
   }),

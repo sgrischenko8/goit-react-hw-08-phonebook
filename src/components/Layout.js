@@ -13,7 +13,9 @@ import { useGetContactsQuery } from 'redux/contacts/contactsSlice';
 
 const Layout = () => {
   const token = useSelector(selectToken);
-  const { isLoading } = useGetContactsQuery();
+  const { isLoading } = useGetContactsQuery(undefined, {
+    skip: token ? false : true,
+  });
 
   return (
     <>

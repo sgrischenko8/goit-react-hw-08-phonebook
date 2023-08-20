@@ -11,6 +11,7 @@ import {
   useGetContactsQuery,
   useAddContactMutation,
   useEditContactMutation,
+  useDeleteContactMutation,
 } from 'redux/contacts/contactsSlice';
 import PropTypes from 'prop-types';
 
@@ -28,6 +29,7 @@ export const ContactForm = ({ onClose, contact }) => {
   const { data: contacts } = useGetContactsQuery();
   const [addContact, { isLoading }] = useAddContactMutation();
   const [editContact, { isLoading: editLoading }] = useEditContactMutation();
+  const [deleteContact, { isLoading: delLoading }] = useDeleteContactMutation();
 
   const checkForEmptiness = values => {
     if (values.name.trim() === '' || values.number.trim() === '') {
@@ -72,11 +74,13 @@ export const ContactForm = ({ onClose, contact }) => {
 
     try {
       await editContact(contact.id, values);
+      await deleteContact(contact.id);
+      addContactHandler(values, actions);
     } catch (error) {
       console.log(error);
     } finally {
-      actions.resetForm();
-      onClose();
+      // actions.resetForm();
+      // onClose();
     }
   };
 
@@ -115,7 +119,7 @@ export const ContactForm = ({ onClose, contact }) => {
         </div>
         <Button onClick={dummyClick}>✔</Button>
 
-        {(isLoading || editLoading) && <Loader />}
+        {(isLoading || editLoading || delLoading) && <Loader />}
       </Form>
     </Formik>
   );
