@@ -17,13 +17,14 @@ export const ContactListItem = ({ contact }) => {
 
   return (
     <>
-      <p
-        className={styles.contact_info}
+      <div
+        className={styles.contact_info_container}
         onClick={() => setIsModalOpen(true)}
         title="Edit Contact"
       >
-        {contact.name}: {contact.number}
-      </p>
+        <span>{contact.name}:</span>
+        <span className={styles.contact_number}>{contact.number}</span>
+      </div>
 
       <Button onClick={() => deleteContact(contact.id)}>
         <Del />
