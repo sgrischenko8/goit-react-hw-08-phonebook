@@ -7,10 +7,14 @@ import { setToken } from 'redux/auth/tokenSlice';
 import styles from './UserMenu.module.css';
 
 export const UserMenu = () => {
-  const { data: user } = useCheckUserQuery();
-  const [logout, { isLoading }] = useLogoutMutation();
-
   const dispatch = useDispatch();
+
+  const { data: user, error } = useCheckUserQuery();
+  if (error) {
+    dispatch(setToken(''));
+  }
+
+  const [logout, { isLoading }] = useLogoutMutation();
 
   const logoutHandler = async () => {
     try {
