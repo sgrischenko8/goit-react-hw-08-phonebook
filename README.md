@@ -1,1 +1,1 @@
-This web app created with React using Redux, RTK, Firebase backend
+This web app created with React using Redux, RTK.
